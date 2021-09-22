@@ -1,13 +1,16 @@
 #![no_std]
 #![feature(panic_info_message)]
 
+mod ctypes;
+pub use ctypes::c_types;
+
 pub use libc_print::libc_println as println;
 pub use core2;
 
 extern "C" {
     fn abort() -> !;
-    fn malloc(sz: u32) -> *mut core::ffi::c_void;
-    fn free(ptr: *mut core::ffi::c_void);
+    fn malloc(sz: u32) -> *mut c_types::c_void;
+    fn free(ptr: *mut c_types::c_void);
 }
 
 //
@@ -51,6 +54,6 @@ unsafe impl GlobalAlloc for Allocator {
         malloc(layout.size() as u32) as *mut u8
     }
     unsafe fn dealloc(&self, ptr: *mut u8, _layout: Layout) {
-        free(ptr as *mut core::ffi::c_void);
+        free(ptr as *mut c_types::c_void);
     }
 }
