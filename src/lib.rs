@@ -1,6 +1,8 @@
 #![no_std]
 #![feature(panic_info_message)]
 
+pub mod utils;
+
 mod ctypes;
 pub use ctypes::c_types;
 
