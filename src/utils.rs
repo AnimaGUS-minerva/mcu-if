@@ -19,6 +19,10 @@ pub fn u8_slice_from(ptr: *const u8, sz: usize) -> &'static [u8] {
     unsafe { core::slice::from_raw_parts(ptr, sz) }
 }
 
+pub fn u8_slice_mut_from(ptr: *mut u8, sz: usize) -> &'static mut [u8] {
+    unsafe { core::slice::from_raw_parts_mut(ptr, sz) }
+}
+
 // TODO check
 #[test]
 fn test_null_terminate() {
