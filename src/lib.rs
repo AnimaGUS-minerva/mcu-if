@@ -19,9 +19,7 @@ mod allocator;
 pub fn panic(info: &core::panic::PanicInfo) -> ! {
     println!("🦀 panic(): ----");
 
-    if let Some(message) = info.message() {
-        println!("  message: \"{}\"", message);
-    }
+    println!("  message: \"{:?}\"", info.message());
 
     if let Some(location) = info.location() {
         println!("  line: {}", location.line());
